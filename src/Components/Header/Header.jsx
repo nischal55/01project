@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
 function Header() {
+  const [search,setSearch] =useState("");
+  
+
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg navbar-dark"
+        className="navbar sticky-top navbar-expand-lg navbar-dark"
         style={{ backgroundColor: "#40826D" }}
       >
         <div className="container-fluid">
@@ -21,8 +26,8 @@ function Header() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <div className="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul className="navbar-nav ms-auto mx-5 mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">
                   Home
@@ -42,32 +47,30 @@ function Header() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Dropdown
+                  Categories
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
+                    <Link className="dropdown-item" to={`/category/clothes`}>
+                      Clothes
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
+                  <Link className="dropdown-item" to={`/category/Electronics`}>
+                      Electronics
+                    </Link>
                   </li>
+                 
                   <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
+                    <Link className="dropdown-item" to={`/category/Furniture`}>
+                      Furniture
+                    </Link>
                   </li>
                 </ul>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled" href="#" aria-disabled="true">
-                  Disabled
+                <a className="nav-link" href="#">
+                  Login
                 </a>
               </li>
             </ul>
@@ -82,14 +85,12 @@ function Header() {
               type="search"
               placeholder="Search"
               aria-label="Search"
+              onChange={(e)=>{setSearch(e.target.value)}}
             />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
+            <Link className="btn btn-primary" style={{textDecoration:"none"}} to={`/Search/${search}`}>Search</Link>
           </form>
         </div>
       
-   
      
     </>
   );
